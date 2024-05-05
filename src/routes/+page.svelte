@@ -6,8 +6,6 @@
 
 	export let data;
 
-	console.log(data);
-
 	onMount(() => {
 		let lightbox = new PhotoSwipeLightbox({
 			gallery: '#gallery',
