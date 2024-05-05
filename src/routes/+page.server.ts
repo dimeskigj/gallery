@@ -13,8 +13,8 @@ type Image = {
 }
 
 export function load(): { images: Image[] } {
-    const thumbnailSourcePath = 'static/images/thumbnails';
-    const fullSourcePath = 'static/images/full';
+    const thumbnailSourcePath = 'images/thumbnails';
+    const fullSourcePath = 'images/full';
     const filePaths = fs.readdirSync(thumbnailSourcePath);
 
     const images = filePaths.map(filePath => {
