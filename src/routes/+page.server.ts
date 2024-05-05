@@ -5,24 +5,34 @@ type Image = {
     src: string;
     width: number;
     height: number;
+    thumbSrc: string;
+    thumbWidth: number;
+    thumbHeight: number;
     alt?: string;
     orientation: number;
 }
 
 export function load(): { images: Image[] } {
-    const thumnbailSourcePath = 'static/images/thumbnails';
-    const filePaths = fs.readdirSync(thumnbailSourcePath);
+    const thumbnailSourcePath = 'static/images/thumbnails';
+    const fullSourcePath = 'static/images/full';
+    const filePaths = fs.readdirSync(thumbnailSourcePath);
 
     const images = filePaths.map(filePath => {
-        const dimensions = sizeOf(`${thumnbailSourcePath}/${filePath}`);
+        const thumbnailPath = `${thumbnailSourcePath}/${filePath}`;
+        const fullPath = `${fullSourcePath}/${filePath}`;
+        const dimensions = sizeOf(fullPath);
+        const thumbDimensions = sizeOf(thumbnailPath);
 
         // https://exiftool.org/TagNames/EXIF.html#:~:text=0x0112,8%20=%20Rotate%20270%20CW
         const isRotated = (dimensions.orientation ?? 0) >= 5;
 
         return {
-            src: filePath,
+            src: fullPath.replace("static/", ""),
+            thumbSrc: thumbnailPath.replace("static/", ""),
             width: !isRotated ? dimensions.width! : dimensions.height!,
+            thumbWidth: !isRotated ? thumbDimensions.width! : thumbDimensions.height!,
             height: !isRotated ? dimensions.height! : dimensions.width!,
+            thumbHeight: !isRotated ? thumbDimensions.height! : thumbDimensions.width!,
             orientation: dimensions.orientation ?? 1
         };
     })

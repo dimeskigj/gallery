@@ -21,7 +21,7 @@
 <div id="gallery">
 	{#each data.images as image}
 		<a
-			href={`images/thumbnails/${image.src}`}
+			href={image.src}
 			data-pswp-width={image.width}
 			data-pswp-height={image.height}
 			target="_blank"
@@ -30,7 +30,9 @@
 			<img
 				class="opacity-0 w-full mb-6 shadow-xl hover:border-8 border-violet-500 cursor-pointer lg:rounded-md"
 				alt={image.alt}
-				use:lazyLoad={`images/thumbnails/${image.src}`}
+				width={image.thumbWidth}
+				height={image.thumbHeight}
+				use:lazyLoad={image.thumbSrc}
 			/>
 		</a>
 	{/each}
