@@ -22,18 +22,20 @@ export function load(): { images: Image[] } {
         const fullPath = `${fullSourcePath}/${filePath}`;
         const dimensions = sizeOf(fullPath);
         const thumbDimensions = sizeOf(thumbnailPath);
+        const altText = filePath.replaceAll('-', '').split('.')[0];
 
         // https://exiftool.org/TagNames/EXIF.html#:~:text=0x0112,8%20=%20Rotate%20270%20CW
         const isRotated = (dimensions.orientation ?? 0) >= 5;
 
         return {
-            src: fullPath.replace("static/", ""),
-            thumbSrc: thumbnailPath.replace("static/", ""),
+            src: fullPath.replace('static/', ''),
+            thumbSrc: thumbnailPath.replace('static/', ''),
             width: !isRotated ? dimensions.width! : dimensions.height!,
             thumbWidth: !isRotated ? thumbDimensions.width! : thumbDimensions.height!,
             height: !isRotated ? dimensions.height! : dimensions.width!,
             thumbHeight: !isRotated ? thumbDimensions.height! : thumbDimensions.width!,
-            orientation: dimensions.orientation ?? 1
+            orientation: dimensions.orientation ?? 1,
+            alt: altText
         };
     })
 
