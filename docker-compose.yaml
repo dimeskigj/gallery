@@ -1,0 +1,8 @@
+name: gallery
+
+services:
+  svelte-gallery:
+    build: .
+    restart: always
+    ports:
+      - "306:3000"
