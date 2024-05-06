@@ -18,7 +18,7 @@
 	});
 </script>
 
-<div id="gallery" class="lg:columns-3 lg:gap-4 mb-10">
+<div id="gallery" class="columns-2 lg:columns-3 gap-3 lg:gap-4 mb-10">
 	{#each data.images as image}
 		<a
 			href={image.src}
@@ -28,7 +28,7 @@
 			rel="noreferrer"
 		>
 			<img
-				class="opacity-0 h-auto w-full mb-6 shadow-xl hover:border-4 border-violet-500 cursor-pointer lg:rounded-md"
+				class="opacity-0 h-auto w-full mb-3 lg:mb-6 shadow-xl hover:border-4 border-violet-500 cursor-pointer rounded-md"
 				alt={image.alt}
 				width={image.thumbWidth}
 				height={image.thumbHeight}

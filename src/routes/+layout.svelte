@@ -14,7 +14,7 @@
 
 		<h1>:~/Gallery$</h1>
 	</div>
-	<div class="lg:w-1/2 w-full">
+	<div class="lg:w-1/2 w-full px-3 lg:px-0">
 		<slot />
 	</div>
 </div>
